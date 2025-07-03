@@ -1,0 +1,13 @@
+name: CI Demo
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Say Hello
+        run: echo "Hello, DevOps!"
