@@ -85,7 +85,7 @@ initrd /casper/initrd
 
 ## 📦 Что включено в `user-data`
 
-- Пользователь: `custom`, пароль: `glW!`
+- Пользователь: `custom`, пароль: `youpass`
 - Docker + rc.local автозапуск
 - NVIDIA 570 + fabricmanager + datacenter GPU manager
 - Автоматическое включение sudo, cloud-init и SSH
