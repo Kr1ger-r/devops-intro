@@ -1,0 +1,51 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+
+  identity:
+    hostname: ram-live
+    username: custom
+    password: YOUPASS 
+    # пароль: YOUPASS
+
+  network:
+    version: 2
+    ethernets:
+      fallback0:
+        match:
+          name: "en*"
+        dhcp4: true
+        dhcp6: false
+    renderer: networkd
+
+  ssh:
+    allow-pw: true
+    install-server: true
+
+  apt:
+    preserve_sources_list: false
+    primary:
+      - arches: [amd64]
+        uri: http://archive.ubuntu.com/ubuntu
+
+  package_update: false
+  package_upgrade: false
+  packages:
+    - docker.io
+    - net-tools
+    - mc
+    - htop
+    - nvtop
+    - curl
+    - git
+    - systemd-sysv
+
+  late-commands:
+    # Включить sudo без пароля
+    - echo "custom ALL=(ALL) NOPASSWD:ALL" > /target/etc/sudoers.d/90-cloud-init-users
+
+    # Включить автозапуск Docker
+    - curtin in-target -- systemctl enable docker
